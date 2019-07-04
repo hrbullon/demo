@@ -31,7 +31,7 @@
     <link href="<?php echo base_url('assets/css/global.css');?>" rel="stylesheet">
 
 	</head>
-  <body>
+  <body onload="set_encuesta()">
     <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="<?php echo base_url()?>">Inicio</a>
@@ -95,10 +95,10 @@
     </a>
   </div>
 
-  <div class="container marketing">
+  <div class="container marketing" id="encuesta">
     <hr class="featurette-divider">
     
-    <div class="row featurette" id="encuesta">
+    <div class="row featurette" >
 			<div class="col-md-6 order-2">
 				<h2 class="featurette-heading">Encuesta del día!</h2>
 				<form action="<?php echo base_url('home');?>" method="POST">
@@ -151,4 +151,23 @@
 </main>
 <script src="<?php echo base_url('assets/plugins/jquery/jquery-3.3.1.slim.min.js');?>"></script>
 <script src="<?php echo base_url('assets/plugins/bootstrap/js/bootstrap.bundle.min.js');?>"></script></body>
+<?php $errors = (validation_errors() !== "")? "encuesta" : "";?>
+<script>
+	function set_encuesta(){
+			var encuesta = <?php echo json_encode($errors);?>;
+			
+			if(encuesta == "encuesta"){
+					
+					var split = window.location.href.split("/");
+					var x = 0;
+
+					$(".form-error input").each(function () { 
+						 if(x == 0){
+							 $(this).focus();
+							 x = 1;
+						 }
+					});
+			}
+	}
+</script>
 </html>
