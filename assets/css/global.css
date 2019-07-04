@@ -1,0 +1,7 @@
+.form-error {
+	color: #ca2347;
+}
+
+.form-error input{
+	border-color: #ca2347;
+}
